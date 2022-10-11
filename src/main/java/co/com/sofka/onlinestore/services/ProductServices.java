@@ -46,4 +46,13 @@ public class ProductServices implements Iproducts {
         return productRepository.findAll().count();
     }
 
+    @Override
+    public Flux<Object> productFilter() {
+        Flux<Products> data1 =  productRepository.findAll().filter(products -> products.getQuantity()%2==0);
+        Flux<Products> data2 =  productRepository.findAll().filter(products -> products.getQuantity()%2!=0);
+        return Flux.zip(data1,data2,(p1,p2)-> p1.getQuantity().equals(p2.getQuantity()));
+
+    }
+
+
 }
