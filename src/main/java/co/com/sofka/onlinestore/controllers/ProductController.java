@@ -30,9 +30,13 @@ public class ProductController {
     }
 
     @GetMapping(path = "/api/products/sum")
-    public Mono<Double> sum() {
+    public Mono<Double> sumProduct() {
         return productServices.sumPrice();
+    }
 
+    @GetMapping(path = "/api/products/cont")
+    public Mono<Long> contProduct() {
+        return productServices.contProduct();
     }
 
 

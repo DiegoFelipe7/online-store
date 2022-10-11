@@ -41,6 +41,9 @@ public class ProductServices implements Iproducts {
                 .reduce(Double::sum);
     }
 
-
+    @Override
+    public Mono<Long> contProduct() {
+        return productRepository.findAll().count();
+    }
 
 }

@@ -13,5 +13,6 @@ public interface Iproducts {
 
     Mono<Double> sumPrice();
 
+    Mono<Long> contProduct();
 
 }
