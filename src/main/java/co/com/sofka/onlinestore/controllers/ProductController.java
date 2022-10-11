@@ -40,7 +40,7 @@ public class ProductController {
     }
 
     @GetMapping(path = "/api/products/sumaCantidad")
-    public Flux<Object> sumQualityProduct() {
+    public Flux<Products> sumQualityProduct() {
         return productServices.productFilter();
     }
 

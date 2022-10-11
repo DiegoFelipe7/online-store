@@ -8,6 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 @Data
 public class ProductServices implements Iproducts {
@@ -47,10 +51,14 @@ public class ProductServices implements Iproducts {
     }
 
     @Override
-    public Flux<Object> productFilter() {
+    public Flux<Products> productFilter() {
         Flux<Products> data1 =  productRepository.findAll().filter(products -> products.getQuantity()%2==0);
         Flux<Products> data2 =  productRepository.findAll().filter(products -> products.getQuantity()%2!=0);
-        return Flux.zip(data1,data2,(p1,p2)-> p1.getQuantity().equals(p2.getQuantity()));
+       return Flux.zip(data1,data2,(p1,p2)->{
+           return Flux.just(p1,p2);
+        }).flatMap(ele->ele);
+
+
 
     }
 

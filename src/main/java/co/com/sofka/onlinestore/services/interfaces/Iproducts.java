@@ -15,6 +15,6 @@ public interface Iproducts {
 
     Mono<Long> contProduct();
 
-    Flux<Object> productFilter();
+    Flux<Products> productFilter();
 
 }
