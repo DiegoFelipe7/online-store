@@ -56,21 +56,21 @@ Se maneja Mono cuando se tiene un solo dato dentro del flujo que puede cumplir o
 dentro de este método se tiene los siguientes casos:
 
 * Que transforme el dato y luego se complete el flujo.
-  
- ![image](https://user-images.githubusercontent.com/17349106/195451659-fde637dc-16b9-4898-a84b-88ec25223ec5.png)
-
+  <p align="center">
+    <img src="https://user-images.githubusercontent.com/17349106/195451659-fde637dc-16b9-4898-a84b-88ec25223ec5.png"/>
+  </p>
 * Que solo se complete el flujo sin que éste tenga elementos. 
-
- ![image](https://user-images.githubusercontent.com/17349106/195451860-0f2a8382-007b-4238-ba07-dca81458c9e6.png)
-
+ <p align="center">
+ <img src="https://user-images.githubusercontent.com/17349106/195451860-0f2a8382-007b-4238-ba07-dca81458c9e6.png"/>
+ <p/>
 * Que solo obtenga o se publique un error sin elementos. 
-
- ![image](https://user-images.githubusercontent.com/17349106/195452036-f667f33f-963c-4f50-befa-ad9801ab509f.png)
-
+<p align="center">
+ <img src="https://user-images.githubusercontent.com/17349106/195452036-f667f33f-963c-4f50-befa-ad9801ab509f.png"/>
+ <p/>
 * Que transforme el dato y obtenga un error y no se pueda completar el flujo. 
-
- ![image](https://user-images.githubusercontent.com/17349106/195452073-a34e1d50-616f-4225-9e2f-8f242a17d158.png)
-
+<p align="center">
+ <img src="https://user-images.githubusercontent.com/17349106/195452073-a34e1d50-616f-4225-9e2f-8f242a17d158.png"/>
+ <p/>
 Es decir, permite el trabajo o flujo de forma asincrónica con cero o un elemento.
 
 ### Flux<T>
@@ -79,25 +79,22 @@ emitidos a lo largo del tiempo hasta completar la cantidad de elementos que se e
 dentro del flujo, de igual manera se pueden presentar los siguientes casos: 
 
 * Usar un flujo con más de un elemento , el cual se puede completar cuando se a cumplido o emitido la cantidad total de elementos. 
-
- ![image](https://user-images.githubusercontent.com/17349106/195452435-2b20e0c6-3345-4478-b951-4c8048bc87bd.png)
-
-
+  <p align="center">
+   <img src="https://user-images.githubusercontent.com/17349106/195452435-2b20e0c6-3345-4478-b951-4c8048bc87bd.png"/>
+  <p/>
 * Usar un flujo vacío, el cual se puede completar sin tener en su estructura ningún elemento. 
-
- ![image](https://user-images.githubusercontent.com/17349106/195452543-20fe97e5-e088-483b-a053-8e92d6ca65e0.png)
-
-
+<p align="center">
+ <img src="https://user-images.githubusercontent.com/17349106/195452543-20fe97e5-e088-483b-a053-8e92d6ca65e0.png"/>
+ <p/>
 * También se puede encontrar casos en los cuales se trabaje con los elementos y no se complete sino por el contrario arroje error. 
-
- ![image](https://user-images.githubusercontent.com/17349106/195452648-0e75e773-0503-4f84-ae9c-3e18d62d3c24.png)
-
-
+<p align="center">
+ <img src="https://user-images.githubusercontent.com/17349106/195452648-0e75e773-0503-4f84-ae9c-3e18d62d3c24.png"/>
+<p/>
 * O  bien sea  que solo se emita un error en el flujo sin necesariamente tener elementos dentro del mismo y no se pueda completar. 
-
-![image](https://user-images.githubusercontent.com/17349106/195452770-d3e3c3b5-b358-4c86-9e2d-0785b741eee5.png)
- 
-
+<p align="center">
+ <img src="https://user-images.githubusercontent.com/17349106/195452770-d3e3c3b5-b358-4c86-9e2d-0785b741eee5.png"/>
+<p/>
+  
 Estas clases mencionados anteriormente son métodos de tipo publicador (**Publisher**), es decir que puede emitir datos en cualquier 
 momento del tiempo a lo largo del ciclo del flujo de datos con lo que se esté trabajando en el momento, son también conocidos como Observables
 
