@@ -23,7 +23,7 @@ aqui una explicacion
   
   
   ### Manifiesto Agil
-  ![Manifiesto](https://user-images.githubusercontent.com/90659322/195433173-22e79e54-c914-475b-aaa7-2eeae9772789.jpeg)
+   ![Manifiesto](https://user-images.githubusercontent.com/90659322/195433173-22e79e54-c914-475b-aaa7-2eeae9772789.jpeg)
   ### Diferencia entre el paradigma reactivo
  
   Se dice que dentro de la programación reactiva lo que se hace es observar los cambios que se realizan en un flujo de datos, esto
@@ -55,21 +55,17 @@ dentro de este método se tiene los siguientes casos:
   
  ![image](https://user-images.githubusercontent.com/17349106/195451659-fde637dc-16b9-4898-a84b-88ec25223ec5.png)
 
- 
 * Que solo se complete el flujo sin que éste tenga elementos. 
 
  ![image](https://user-images.githubusercontent.com/17349106/195451860-0f2a8382-007b-4238-ba07-dca81458c9e6.png)
-
 
 * Que solo obtenga o se publique un error sin elementos. 
 
  ![image](https://user-images.githubusercontent.com/17349106/195452036-f667f33f-963c-4f50-befa-ad9801ab509f.png)
 
-
 * Que transforme el dato y obtenga un error y no se pueda completar el flujo. 
 
  ![image](https://user-images.githubusercontent.com/17349106/195452073-a34e1d50-616f-4225-9e2f-8f242a17d158.png)
-
 
 Es decir, permite el trabajo o flujo de forma asincrónica con cero o un elemento.
 
