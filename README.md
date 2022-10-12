@@ -23,9 +23,13 @@ aqui una explicacion
   
   
   ### Manifiesto Agil
-   ![Manifiesto](https://user-images.githubusercontent.com/90659322/195433173-22e79e54-c914-475b-aaa7-2eeae9772789.jpeg)
+  <p align="center">
+    <img src="https://user-images.githubusercontent.com/90659322/195433173-22e79e54-c914-475b-aaa7-2eeae9772789.jpeg">
+  </p>
+   
+  
+  
   ### Diferencia entre el paradigma reactivo
- 
   Se dice que dentro de la programación reactiva lo que se hace es observar los cambios que se realizan en un flujo de datos, esto
   mediante una suscripción desde la vista, es decir, consiste en reaccionar a los cambios que ocurren dentro de los flujos de datos.
   De acuerdo a lo anterior se tiene entonces que mientras que el paradigma imperativo trabaja con colecciones o listas, el paradigma
