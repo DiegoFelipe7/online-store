@@ -42,6 +42,94 @@ aqui una explicacion
   elementos o flujos de manera asíncrona, mientras que el paradigma imperativo es síncrono, es decir, es bloqueante, detiene el proceso
   y hasta que un método no termine su proceso, este no devuelve el control, y como se mencionaba anteriormente la programación reactiva
   busca tener una baja cohesión sin cambios de estado, por tanto debe ser completamente asíncrono en lo posible.
+  
+  ## Mono y Flux
+Dentro de estos flujos de datos mencionados anteriormente se encuentran dos clases que son las más usadas 
+y permiten agrupar todos los flujos de datos, estas clases son Mono y Flux que permite el trabajo de la siguiente manera:
+
+### Mono<T>
+Se maneja Mono cuando se tiene un solo dato dentro del flujo que puede cumplir o no con las condiciones indicadas, 
+dentro de este método se tiene los siguientes casos:
+
+* Que transforme el dato y luego se complete el flujo.
+  
+ ![image](https://user-images.githubusercontent.com/17349106/195451659-fde637dc-16b9-4898-a84b-88ec25223ec5.png)
+
+ 
+* Que solo se complete el flujo sin que éste tenga elementos. 
+
+ ![image](https://user-images.githubusercontent.com/17349106/195451860-0f2a8382-007b-4238-ba07-dca81458c9e6.png)
+
+
+* Que solo obtenga o se publique un error sin elementos. 
+
+ ![image](https://user-images.githubusercontent.com/17349106/195452036-f667f33f-963c-4f50-befa-ad9801ab509f.png)
+
+
+* Que transforme el dato y obtenga un error y no se pueda completar el flujo. 
+
+ ![image](https://user-images.githubusercontent.com/17349106/195452073-a34e1d50-616f-4225-9e2f-8f242a17d158.png)
+
+
+Es decir, permite el trabajo o flujo de forma asincrónica con cero o un elemento.
+
+### Flux<T>
+Se maneja Flux para un flujo con una cantidad indeterminada de elementos que son 
+emitidos a lo largo del tiempo hasta completar la cantidad de elementos que se encuentran
+dentro del flujo, de igual manera se pueden presentar los siguientes casos: 
+
+* Usar un flujo con más de un elemento , el cual se puede completar cuando se a cumplido o emitido la cantidad total de elementos. 
+
+ ![image](https://user-images.githubusercontent.com/17349106/195452435-2b20e0c6-3345-4478-b951-4c8048bc87bd.png)
+
+
+* Usar un flujo vacío, el cual se puede completar sin tener en su estructura ningún elemento. 
+
+ ![image](https://user-images.githubusercontent.com/17349106/195452543-20fe97e5-e088-483b-a053-8e92d6ca65e0.png)
+
+
+* También se puede encontrar casos en los cuales se trabaje con los elementos y no se complete sino por el contrario arroje error. 
+
+ ![image](https://user-images.githubusercontent.com/17349106/195452648-0e75e773-0503-4f84-ae9c-3e18d62d3c24.png)
+
+
+* O  bien sea  que solo se emita un error en el flujo sin necesariamente tener elementos dentro del mismo y no se pueda completar. 
+
+![image](https://user-images.githubusercontent.com/17349106/195452770-d3e3c3b5-b358-4c86-9e2d-0785b741eee5.png)
+ 
+
+Estas clases mencionados anteriormente son métodos de tipo publicador (**Publisher**), es decir que puede emitir datos en cualquier 
+momento del tiempo a lo largo del ciclo del flujo de datos con lo que se esté trabajando en el momento, son también conocidos como Observables
+
+Una manera de obtener la información de este tipo de métodos y dado que son observables, es suscribirse para ser notificados de los cambios 
+que realice el flujo de datos, por medio del método **Subscribe**, pero este método se debe evitar usar, ya que es un método bloqueante, es decir,
+espera una respuesta y en este tiempo detiene todo el flujo, con lo que obstruye la cadena del publicador y por ende la reactividad y **el flujo 
+pierde el asincronismo**.
+La manera correcta de obtener esta información es suscribirse desde la vista para mostrar la información de manera asíncrona **sin bloquear el flujo** 
+en el publicador sino que por el contrario este siempre pendiente de los cambios ocurridos dentro del flujo y reaccione a ellos. 
+(Ejemplo de quien puede suscribirse: Componente de Angular, entre otros).
+
+
+## ¿Qué son las lambdas?
+Una expresión Lambda es una función anónima, básicamente es un método abstracto es decir un método que sólo está definido en una interfaz pero no implementado,
+y esa es la clave de la funciones lambda, al no estar implementado, el programador lo puede implementar dónde él crea conveniente sin haber heredado de la interfaz.
+
+                                                          (parámetro)->{cuerpo-lamba}
+
+El operador lambda (->) separa la declaración de parámetros de la declaración del cuerpo de la funcional estas expresiones fueron incluidas en la versión 8 de java.
+
+### Parámetro:
+* Cuando se tiene un solo parámetro no es necesario utilizar paréntesis.
+* Cuando no se tiene parámetros en necesario utilizar paréntesis.
+### Cuerpo lambda:
+* Cuando el cuerpo de la expresión lambda tiene una unica linea no es necesario utilizar las llaves y no necesita especificar la cláusula return.
+* Cuando el cuerpo de la expresión lambda tiene más de una línea es necesario utilizar las llaves y especificar la cláusula return.
+
+Ejemplos de lambda 
+* () -> System.out.println(“Expresión lambda ”)
+* (int num1 , int num2)->{return num1+num2}
+
+  
  ## Operadores 🛠️
  Para la utilización de estos operadores de transformación,se realizó la creación de un proyecto  con spring boot y web flux el cual está
  basado en un tienda que consta de un documento de productos.
