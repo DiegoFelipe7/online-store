@@ -16,17 +16,16 @@ aqui una explicacion
   ----------------------------------------------------
   ## Introducción 📌
   ### ¿Qué es programación reactiva?
-  ```
   La programación reactiva es un paradigma enfocado en el trabajo con flujos de datos finitos o infinitos de manera asíncrona.
   Su concepción y evolución ha ido ligada   a la publicación del manifiesto reactivo,del cual hablaremos un poco más adelante 
   ¿pero que significa asíncrona en programación reactiva? las tareas pueden ejecutarse secuencialmente, esto significa que
   podemos indicar que algunas tareas se pasen a segundo plano y esperen a su turno para ser reanudadas y ejecutadas
-  ```
+  
   
   ### Manifiesto Agil
   ![Manifiesto](https://user-images.githubusercontent.com/90659322/195433173-22e79e54-c914-475b-aaa7-2eeae9772789.jpeg)
   ### Diferencia entre el paradigma reactivo
-  ```
+ 
   Se dice que dentro de la programación reactiva lo que se hace es observar los cambios que se realizan en un flujo de datos, esto
   mediante una suscripción desde la vista, es decir, consiste en reaccionar a los cambios que ocurren dentro de los flujos de datos.
   De acuerdo a lo anterior se tiene entonces que mientras que el paradigma imperativo trabaja con colecciones o listas, el paradigma
@@ -43,7 +42,7 @@ aqui una explicacion
   elementos o flujos de manera asíncrona, mientras que el paradigma imperativo es síncrono, es decir, es bloqueante, detiene el proceso
   y hasta que un método no termine su proceso, este no devuelve el control, y como se mencionaba anteriormente la programación reactiva
   busca tener una baja cohesión sin cambios de estado, por tanto debe ser completamente asíncrono en lo posible.
-  ```
+ 
   
 ## Autores ✒️
 * **Daniel Steven Gil Cruz** 
