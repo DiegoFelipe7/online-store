@@ -62,5 +62,21 @@ public class ProductServices implements Iproducts {
         return listGreen.mergeWith(listRed);
     }
 
+    @Override
+    public Flux<Products> differentProducts() {
+        return productRepository.findAll()
+                .distinct(Products::getColor);
+    }
+
+    @Override
+    public Flux<Products> listOfProducts(Long n) {
+        return productRepository.findAll().take(n);
+    }
+
+    @Override
+    public Flux<Products> skipProducts(Long n) {
+        return productRepository.findAll().skip(n);
+    }
+
 
 }

@@ -49,4 +49,18 @@ public class ProductController {
         return productServices.productSequentialColor();
     }
 
+    @GetMapping(path = "/api/products/different")
+    public Flux<Products> productDistinct(){
+        return productServices.differentProducts();
+    }
+
+    @GetMapping(path = "/api/products/take/{n}")
+    public Flux<Products> ListProductsTake(@PathVariable("n") Long n){
+        return productServices.listOfProducts(n);
+    }
+
+    @GetMapping(path = "api/products/skip/{n}")
+    public Flux<Products> listProductsSkip(@PathVariable("n") Long n){
+        return productServices.skipProducts(n);
+    }
 }
