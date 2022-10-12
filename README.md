@@ -136,7 +136,7 @@ Ejemplos de lambda
 Observable<R>. Sin embargo, una firma no siempre describe bien el comportamiento del operador especialmente si el operador realiza una transformación compleja. Para estos propósitos, se inventaron los diagramas de mármol. Los diagramas de mármol presentan visualmente las transformaciones del flujo.Un ejemplo práctico del map con el ejemplo de la tienda seria:
   
 <p align="center">
- ![image](https://user-images.githubusercontent.com/90659322/195445782-f80c52df-8de3-4a9c-b11a-99bb9dc6a283.png)
+  <img src="https://user-images.githubusercontent.com/90659322/195445782-f80c52df-8de3-4a9c-b11a-99bb9dc6a283.png"/>
 </p>
   
 ```
@@ -145,7 +145,7 @@ Observable<R>. Sin embargo, una firma no siempre describe bien el comportamiento
   Un ejemplo del resultado esperado sería
 ```
   <p align="center">
-  ![image](https://user-images.githubusercontent.com/90659322/195445903-4f6e1e30-4a2b-4a70-bf66-e62ff822258c.png)
+    <img src="https://user-images.githubusercontent.com/90659322/195445903-4f6e1e30-4a2b-4a70-bf66-e62ff822258c.png"/>
   </p>
   
  * **Flatmap:** El operador flatMap consta, lógicamente, de dos operaciones: map y flatten (en términos de Reactor, flatten es similar al operador merge). La parte map del operador flatMap transforma cada elemento entrante en una secuencia reactiva      (T -> Flux<R>), y la parte flatten fusiona todas las secuencias reactivas generadas en una nueva secuencia reactiva, por la que pasa los elementos de tipo R. 
@@ -154,7 +154,7 @@ Según la dinámica que venimos trabajando de la tienda con los productos un eje
 ### Operadores de filtrado
    * **Filter:** A diferencia del operador de mapa, el filtro puede producir menos elementos de los que ha recibido. Sólo emite los elementos que han superado con éxito    la prueba del predicado
    <p align="center">
-    ![image](https://user-images.githubusercontent.com/90659322/195447161-fda5177e-238c-415e-a3ce-a508798d3d2f.png)
+     <img src="https://user-images.githubusercontent.com/90659322/195447161-fda5177e-238c-415e-a3ce-a508798d3d2f.png"/>
    </p>
   
   ```
@@ -162,12 +162,12 @@ Según la dinámica que venimos trabajando de la tienda con los productos un eje
   realizará por el nombre del producto donde la consulta contenga una secuencia de caracteres.
   ```
   <p align="center">
-  ![image](https://user-images.githubusercontent.com/90659322/195447625-a4080f68-ca09-472c-a335-e67e4cab70f0.png)
+    <img src="https://user-images.githubusercontent.com/90659322/195447625-a4080f68-ca09-472c-a335-e67e4cab70f0.png"/>
   </p>
   
    * **Distic:** Este método usa los métodos hashCode() y equals() para obtener elementos distintos
    <p align="center">
-  ![image](https://user-images.githubusercontent.com/90659322/195448203-1efef780-0cab-4c5d-bf47-db8dad719781.png)
+     <img src="https://user-images.githubusercontent.com/90659322/195448203-1efef780-0cab-4c5d-bf47-db8dad719781.png"/>
   </p>
   
   ```
@@ -175,12 +175,13 @@ Según la dinámica que venimos trabajando de la tienda con los productos un eje
   nos entrega el siguiente resultado
   ```
   <p align="center">
+    <img src=""/>
     ![image](https://user-images.githubusercontent.com/90659322/195449032-8fef8e1a-96d5-4eb9-912f-33fcf7f5e874.png)
   </p>
   
    * **Take:** Toma n cantidad de elementos de un flux 
    <p align="center">
-  ![image](https://user-images.githubusercontent.com/90659322/195448203-1efef780-0cab-4c5d-bf47-db8dad719781.png)
+     <img src="https://user-images.githubusercontent.com/90659322/195448203-1efef780-0cab-4c5d-bf47-db8dad719781.png"/>
   </p>
   
   ```
@@ -188,12 +189,12 @@ Según la dinámica que venimos trabajando de la tienda con los productos un eje
 
   ```
   <p align="center">
-   ![image](https://user-images.githubusercontent.com/90659322/195450212-557c8786-417e-4d5d-9924-f61879be4092.png)
+    <img src="https://user-images.githubusercontent.com/90659322/195450212-557c8786-417e-4d5d-9924-f61879be4092.png"/>
   </p>
   
   * **Skip:**  se usa para ignorar un determinado numero de elementos de un flux 
    <p align="center">
-  ![image](https://user-images.githubusercontent.com/90659322/195448203-1efef780-0cab-4c5d-bf47-db8dad719781.png)
+     <img src="https://user-images.githubusercontent.com/90659322/195448203-1efef780-0cab-4c5d-bf47-db8dad719781.png"/>
   </p>
   
   ```
@@ -202,7 +203,7 @@ Según la dinámica que venimos trabajando de la tienda con los productos un eje
 
   ```
   <p align="center">
-    ![image](https://user-images.githubusercontent.com/90659322/195450928-54a8e07e-ab68-4254-9463-9c8e76f514a1.png)
+    <img src="https://user-images.githubusercontent.com/90659322/195450928-54a8e07e-ab68-4254-9463-9c8e76f514a1.png"/>
   </p>
   
   
