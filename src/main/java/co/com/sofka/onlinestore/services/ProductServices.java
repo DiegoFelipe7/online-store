@@ -9,8 +9,6 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 @Data
@@ -18,7 +16,7 @@ public class ProductServices implements Iproducts {
 
     @Autowired
     private ProductRepository productRepository;
-
+    
     @Override
     public Flux<Products> listProducts() {
         return productRepository.findAll().map(products ->{
