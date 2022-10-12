@@ -39,9 +39,14 @@ public class ProductController {
         return productServices.contProduct();
     }
 
-    @GetMapping(path = "/api/products/sumaCantidad")
-    public Flux<Products> sumQualityProduct() {
-        return productServices.productFilter();
+    @GetMapping(path = "/api/products/productsColorInterleaved")
+    public Flux<Products> InterleavedColorProduct() {
+        return productServices.productColorInterleaved();
+    }
+
+    @GetMapping(path = "/api/products/productsSequentialColor")
+    public Flux<Products> SequentialColorProduct() {
+        return productServices.productSequentialColor();
     }
 
 }

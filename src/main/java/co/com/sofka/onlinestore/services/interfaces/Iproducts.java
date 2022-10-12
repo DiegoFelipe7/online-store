@@ -14,7 +14,7 @@ public interface Iproducts {
     Mono<Double> sumPrice();
 
     Mono<Long> contProduct();
-
-    Flux<Products> productFilter();
+    Flux<Products> productColorInterleaved();
+    Flux<Products> productSequentialColor();
 
 }

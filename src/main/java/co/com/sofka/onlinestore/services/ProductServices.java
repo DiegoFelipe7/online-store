@@ -49,15 +49,17 @@ public class ProductServices implements Iproducts {
     }
 
     @Override
-    public Flux<Products> productFilter() {
-        Flux<Products> data1 =  productRepository.findAll().filter(products -> products.getQuantity()%2==0);
-        Flux<Products> data2 =  productRepository.findAll().filter(products -> products.getQuantity()%2!=0);
-       return Flux.zip(data1,data2,(p1,p2)->{
-           return Flux.just(p1,p2);
-        }).flatMap(ele->ele);
+    public Flux<Products> productColorInterleaved() {
+        Flux<Products> listGreen =  productRepository.findAll().filter(products -> products.getColor().equalsIgnoreCase("VERDE"));
+        Flux<Products> listRed =  productRepository.findAll().filter(products -> products.getColor().equalsIgnoreCase("ROJO"));
+        return Flux.zip(listGreen,listRed,(productGreen,productRed)->Flux.just(productGreen,productRed)).flatMap(product->product);
+    }
 
-
-
+    @Override
+    public Flux<Products> productSequentialColor() {
+        Flux<Products> listGreen =  productRepository.findAll().filter(products -> products.getColor().equalsIgnoreCase("VERDE"));
+        Flux<Products> listRed =  productRepository.findAll().filter(products -> products.getColor().equalsIgnoreCase("ROJO"));
+        return listGreen.mergeWith(listRed);
     }
 
 
