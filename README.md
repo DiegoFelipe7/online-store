@@ -331,17 +331,48 @@ Cuando diseñamos una aplicación reactiva que se comunica mucho con servicios e
 Además, la semántica de las secuencias reactivas define que onError es una operación terminal, tras la cual después de la cual la secuencia reactiva deja de ejecutarse. En ese momento, podemos reaccionar de otra manera aplicando una de las siguientes  estrategias:
   
 * Por supuesto, debemos definir manejadores para la señal onError en el operador subscribe la secuencia reactiva.
+  
+* Podemos atrapar y sustituir un error por un valor estático por defecto o un valor calculado de la excepción aplicando el operador onErrorReturn.
+  
+  Ejemplo de implementación del operador errorReturn
+  <p align="center">
+    <img src="https://user-images.githubusercontent.com/106001562/195710915-d9cfe8be-f5a5-4833-851d-e0eb2e1eb2ab.png"/>
+  </p>
+  
+  Resutado: 
+  <p align="center">
+    <img src="https://user-images.githubusercontent.com/106001562/195711130-ae0d3ef1-8758-4d7a-8bca-d8bb7dfa3253.png"/>
+  </p>
+  <p align="center">
+    <img src="https://user-images.githubusercontent.com/106001562/195711221-551750a2-33be-4e4c-9130-2029fd5dc762.png"/>
+  </p>
 
 * Podemos atrapar una excepción y ejecutar un flujo de trabajo alternativo aplicando el operador onErrorResume.
   
-* Podemos capturar y transformar una excepción en otra que represente mejor la situación representa la situación aplicando el operador onErrorMap.
-
-* Podemos definir un flujo de trabajo reactivo que, en caso de error, reintente la
-ejecución. El operador retry vuelve a suscribir la secuencia reactiva de origen si ésta señala un error. Puede comportarse así indefinidamente o durante un tiempo limitado. El operador retryBackoff da soporte out-of-the-box para el algoritmo exponencial backoff, que reintenta la operación con retrasos crecientes.
-
+  Ejemplo de implementación del operador errorResume
+  <p align="center">
+    <img src="https://user-images.githubusercontent.com/106001562/195711478-f3a3d139-b1c6-4b83-9bac-3b7b2fb963f8.png"/>
+  </p>
   
-
-
+  Resultado:
+  <p align="center">
+    <img src="https://user-images.githubusercontent.com/106001562/195711586-719d965b-7c2c-4207-8a36-d16a7f2b6962.png"/>
+  </p>
+  <p align="center">
+    <img src="https://user-images.githubusercontent.com/106001562/195711699-b066bae0-d421-493b-8d73-db0d08491f91.png"/>
+  </p>
+  
+* Podemos capturar y transformar una excepción en otra que represente mejor la situación representa la situación aplicando el operador onErrorMap.
+  
+  Ejemplo de implementación del operador errorMap
+  <p align="center">
+    <img src="https://user-images.githubusercontent.com/106001562/195711894-c79dcd67-b3d3-432a-9541-53522418cd5f.png"/>
+  </p>
+  
+  Resultado: 
+  <p align="center">
+    <img src="https://user-images.githubusercontent.com/106001562/195712075-7603e1c4-4a60-4767-b69f-16996e8fa096.png"/>
+  </p>
   
 ## Autores ✒️
 * **Daniel Steven Gil Cruz** 
