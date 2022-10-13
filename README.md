@@ -17,9 +17,9 @@ aqui una explicacion
   ## Introducción 📌
   ### ¿Qué es programación reactiva?
   La programación reactiva es un paradigma enfocado en el trabajo con flujos de datos finitos o infinitos de manera asíncrona.
-  Su concepción y evolución ha ido ligada   a la publicación del manifiesto reactivo,del cual hablaremos un poco más adelante 
-  ¿pero que significa asíncrona en programación reactiva? las tareas pueden ejecutarse secuencialmente, esto significa que
-  podemos indicar que algunas tareas se pasen a segundo plano y esperen a su turno para ser reanudadas y ejecutadas
+  Su concepción y evolución ha ido ligada a la publicación del manifiesto reactivo,del cual se explica un poco más adelante 
+  ¿pero que significa asíncrona en programación reactiva? las tareas pueden ejecutarse o no secuencialmente, esto significa que
+  podemos indicar que algunas tareas se pasen a segundo plano y se espere una respuesta sin detener el flujo.
   
   
   ### Manifiesto Agil
@@ -33,9 +33,9 @@ aqui una explicacion
   Se dice que dentro de la programación **reactiva** lo que se plantea es observar los cambios que se realizan en un **flujo de datos**, esto
   mediante una suscripción desde la vista, es decir, consiste en reaccionar a los cambios que ocurren dentro de los flujos de datos.
   
-  De acuerdo a lo anterior se tiene entonces que mientras el paradigma imperativo trabaja con **colecciones o listas**, el paradigma
+  De acuerdo a lo anterior se tiene entonces, que mientras el paradigma imperativo trabaja con **colecciones o listas**, el paradigma
   reactivo permite el trabajo con **flujos de datos**, algo similar al uso de Stream en Java, es decir, el mismo flujo indica en qué
-  momento termina y este puede o no tener elemento e incluso devolver un error (de ello se habla más adelante).
+  momento termina y este puede o no tener elementos e incluso devolver un error (de ello se habla más adelante).
   
   Otra diferencia que se observa es que el paradigma reactivo se implementa bajo programación **funcional**, basado en funciones **sin estado**,
   ya que el estado sólo depende de los datos de entrada, esto es, que dados siempre los mismos datos de entrada, se obtiene siempre
@@ -43,7 +43,7 @@ aqui una explicacion
   estos si se maneja el **cambio de estado** de los atributos en dichos objetos, es decir, el paradigma imperativo tiene una **alta cohesión**
   mientras que en el paradigma reactivo disminuye altamente dicha cohesión.
   
-  Pero qué se busca con esta **baja cohesión**?
+  ¿Pero qué se busca con esta **baja cohesión**?
   
   Lo que busca es poder paralelizar los flujos de datos si se tienen flujos complejos, busca
   procesar en paralelo , y dado que no tienen estado, el resultado siempre es el mismo.
@@ -65,14 +65,17 @@ dentro de este método se tiene los siguientes casos:
   <p align="center">
     <img src="https://user-images.githubusercontent.com/17349106/195451659-fde637dc-16b9-4898-a84b-88ec25223ec5.png"/>
   </p>
+  
 * Que solo se complete el flujo sin que éste tenga elementos. 
  <p align="center">
  <img src="https://user-images.githubusercontent.com/17349106/195451860-0f2a8382-007b-4238-ba07-dca81458c9e6.png"/>
  <p/>
+ 
 * Que solo obtenga o se publique un error sin elementos. 
 <p align="center">
  <img src="https://user-images.githubusercontent.com/17349106/195452036-f667f33f-963c-4f50-befa-ad9801ab509f.png"/>
  <p/>
+ 
 * Que transforme el dato y obtenga un error y no se pueda completar el flujo. 
 <p align="center">
  <img src="https://user-images.githubusercontent.com/17349106/195452073-a34e1d50-616f-4225-9e2f-8f242a17d158.png"/>
@@ -88,14 +91,17 @@ dentro del flujo, de igual manera se pueden presentar los siguientes casos:
   <p align="center">
    <img src="https://user-images.githubusercontent.com/17349106/195452435-2b20e0c6-3345-4478-b951-4c8048bc87bd.png"/>
   <p/>
+  
 * Usar un flujo vacío, el cual se puede completar sin tener en su estructura ningún elemento. 
 <p align="center">
  <img src="https://user-images.githubusercontent.com/17349106/195452543-20fe97e5-e088-483b-a053-8e92d6ca65e0.png"/>
  <p/>
-* También se puede encontrar casos en los cuales se trabaje con los elementos y no se complete sino por el contrario arroje error. 
+ 
+* También se puede encontrar casos en los cuales se trabaje con los elementos y no se complete, sino por el contrario arroje error. 
 <p align="center">
  <img src="https://user-images.githubusercontent.com/17349106/195452648-0e75e773-0503-4f84-ae9c-3e18d62d3c24.png"/>
 <p/>
+
 * O  bien sea  que solo se emita un error en el flujo sin necesariamente tener elementos dentro del mismo y no se pueda completar. 
 <p align="center">
  <img src="https://user-images.githubusercontent.com/17349106/195452770-d3e3c3b5-b358-4c86-9e2d-0785b741eee5.png"/>
@@ -108,8 +114,9 @@ Una manera de obtener la información de este tipo de métodos y dado que son ob
 que realice el flujo de datos, por medio del método **Subscribe**, pero este método se debe evitar usar, ya que es un método bloqueante, es decir,
 espera una respuesta y en este tiempo detiene todo el flujo, con lo que obstruye la cadena del publicador y por ende la reactividad y **el flujo 
 pierde el asincronismo**.
+
 La manera correcta de obtener esta información es suscribirse desde la vista para mostrar la información de manera asíncrona **sin bloquear el flujo** 
-en el publicador sino que por el contrario este siempre pendiente de los cambios ocurridos dentro del flujo y reaccione a ellos. 
+en el publicador sino que por el contrario esté siempre pendiente de los cambios ocurridos dentro del flujo y reaccione a ellos. 
 (Ejemplo de quien puede suscribirse: Componente de Angular, entre otros).
 
 
@@ -119,11 +126,11 @@ y esa es la clave de la funciones lambda, al no estar implementado, el programad
 
                                                           (parámetro)->{cuerpo-lamba}
 
-El operador lambda (->) separa la declaración de parámetros de la declaración del cuerpo de la funcional estas expresiones fueron incluidas en la versión 8 de java.
+El operador lambda (->) separa la declaración de parámetros de la declaración del cuerpo de la funcional, estas expresiones fueron incluidas en la versión 8 de java.
 
 ### Parámetro:
 * Cuando se tiene un solo parámetro no es necesario utilizar paréntesis.
-* Cuando no se tiene parámetros en necesario utilizar paréntesis.
+* Cuando no se tiene parámetros es necesario utilizar paréntesis.
 ### Cuerpo lambda:
 * Cuando el cuerpo de la expresión lambda tiene una unica linea no es necesario utilizar las llaves y no necesita especificar la cláusula return.
 * Cuando el cuerpo de la expresión lambda tiene más de una línea es necesario utilizar las llaves y especificar la cláusula return.
@@ -134,8 +141,10 @@ Ejemplos de lambda
 
   
  ## Operadores 🛠️
- Para la utilización de estos operadores de transformación,se realizó la creación de un proyecto  con spring boot y web flux el cual está
- basado en un tienda que consta de un documento de productos.
+ Los operadores son pensados principalmente para ayudar a modificar, filtrar, combinar y transformar los datos emitidos por 
+ los observables o flujos de datos, para la implementación de estos operadores, se realiza la creación de un proyecto  con spring 
+ boot y web flux el cual está basado en un tienda que consta de un documento de productos con el cual se realiza los ejemplos que
+ se muestran en los siguientes operadores.
  ### Operadores de transformación
  * **Map:** Sin duda, el operador más utilizado en RxJava es map, que tiene la siguiente firma:<R> Observable<R> map(Func1<T, R> func)La declaración 
   del método anterior significa que la función func puede transformar el objeto T al tipo de objeto R, y la aplicación de map transforma Observable<T> en
@@ -158,7 +167,7 @@ Observable<R>. Sin embargo, una firma no siempre describe bien el comportamiento
 Según la dinámica que venimos trabajando de la tienda con los productos un ejemplo de este sería:
 
 ### Operadores de filtrado
-   * **Filter:** A diferencia del operador de mapa, el filtro puede producir menos elementos de los que ha recibido. Sólo emite los elementos que han superado con éxito    la prueba del predicado
+   * **Filter:** A diferencia del operador de mapa, el filtro puede producir menos elementos de los que ha recibido. Sólo emite los elementos que han superado con éxito la prueba del predicado
    <p align="center">
      <img src="https://user-images.githubusercontent.com/90659322/195447161-fda5177e-238c-415e-a3ce-a508798d3d2f.png"/>
    </p>
