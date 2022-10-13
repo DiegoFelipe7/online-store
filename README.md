@@ -1,5 +1,5 @@
 # Tienda de productos
-aqui una explicacion
+
 ## Tabla de contenido 📋
 1. **Introducción**
    * ¿Qué es programación reactiva?
@@ -7,7 +7,7 @@ aqui una explicacion
    * Diferencia entre paradigma imperativo y reactivo
 2. **Mono y Flux**
 3. **¿Qué son las lambdas?**
-4. **Referencia a metodos**
+4. **Referencia a métodos**
 5. **Operadores**
    * Operadores de trasnformación
    * Operadores de filtrado
