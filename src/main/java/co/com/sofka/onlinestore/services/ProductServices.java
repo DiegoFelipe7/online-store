@@ -9,8 +9,6 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 @Data
@@ -18,7 +16,7 @@ public class ProductServices implements Iproducts {
 
     @Autowired
     private ProductRepository productRepository;
-
+    
     @Override
     public Flux<Products> listProducts() {
         return productRepository.findAll().map(products ->{
@@ -67,6 +65,22 @@ public class ProductServices implements Iproducts {
         Flux<Products> listRed =  productRepository.findAll()
                 .filter(products -> products.getColor().equalsIgnoreCase("ROJO"));
         return listGreen.mergeWith(listRed);
+    }
+
+    @Override
+    public Flux<Products> differentProducts() {
+        return productRepository.findAll()
+                .distinct(Products::getColor);
+    }
+
+    @Override
+    public Flux<Products> listOfProducts(Long n) {
+        return productRepository.findAll().take(n);
+    }
+
+    @Override
+    public Flux<Products> skipProducts(Long n) {
+        return productRepository.findAll().skip(n);
     }
 
 

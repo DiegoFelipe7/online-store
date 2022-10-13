@@ -17,4 +17,9 @@ public interface Iproducts {
     Flux<Products> productColorInterleaved();
     Flux<Products> productSequentialColor();
 
+    Flux<Products> differentProducts();
+
+    Flux<Products> listOfProducts(Long n);
+
+    Flux<Products>  skipProducts(Long n);
 }
