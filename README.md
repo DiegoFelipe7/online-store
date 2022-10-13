@@ -312,7 +312,18 @@ Los operadores de comparación sirven para fusionar los elementos de n cantidad 
   </p>
   
 
+### Manejo de errores 
+Cuando diseñamos una aplicación reactiva que se comunica mucho con servicios externos, tenemos que lidiar con todo tipo de situaciones excepcionales. Afortunadamente, la señal onError es una parte integral de la especificación del flujo reactivo, por lo que una excepción siempre debería tener una manera de propagarse al actor que puede manejarla. Sin embargo, si el suscriptor final no define un manejador para la señal onError, onError lanza un UnsupportedOperationException.
+Además, la semántica de las secuencias reactivas define que onError es una operación terminal, tras la cual después de la cual la secuencia reactiva deja de ejecutarse. En ese momento, podemos reaccionar de otra manera aplicando una de las siguientes  estrategias:
+  
+* Por supuesto, debemos definir manejadores para la señal onError en el operador subscribe la secuencia reactiva.
 
+* Podemos atrapar una excepción y ejecutar un flujo de trabajo alternativo aplicando el operador onErrorResume.
+  
+* Podemos capturar y transformar una excepción en otra que represente mejor la situación representa la situación aplicando el operador onErrorMap.
+
+* Podemos definir un flujo de trabajo reactivo que, en caso de error, reintente la
+ejecución. El operador retry vuelve a suscribir la secuencia reactiva de origen si ésta señala un error. Puede comportarse así indefinidamente o durante un tiempo limitado. El operador retryBackoff da soporte out-of-the-box para el algoritmo exponencial backoff, que reintenta la operación con retrasos crecientes.
 
   
 
