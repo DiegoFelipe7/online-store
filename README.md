@@ -139,7 +139,21 @@ Ejemplos de lambda
 * () -> System.out.println(“Expresión lambda ”)
 * (int num1 , int num2)->{return num1+num2}
 
-  
+ ## Referencia a metodos
+Hay una característica importante relacionada con las expresiones lambda llamada Métodos de Referencia. Una referencia a métodos o métodos referenciados proporciona    una forma de referirse a un método sin ejecutarlo. Se relaciona con expresiones lambda  porque también requiere un contexto de tipo objetivo que consiste en una    interfaz funcional compatible. Cuando se evalúa, una referencia de método también crea una instancia de una interfaz funcional. Hay diferentes tipos de referencias de métodos
+* Referencia a un método estático
+* Referencia a un método de un objeto
+* Referencia a un método de un objeto arbitrario
+* Referencia a un constructor
+ ``` 
+ Ejemplo:
+ Objeto::atributo
+ System.out::println
+ NombreClase::nombeMetodo
+
+ ```
+
+
  ## Operadores 🛠️
  Los operadores son pensados principalmente para ayudar a modificar, filtrar, combinar y transformar los datos emitidos por 
  los observables o flujos de datos, para la implementación de estos operadores, se realiza la creación de un proyecto  con spring 
