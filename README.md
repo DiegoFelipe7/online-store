@@ -146,25 +146,44 @@ Ejemplos de lambda
  boot y web flux el cual está basado en un tienda que consta de un documento de productos con el cual se realiza los ejemplos que
  se muestran en los siguientes operadores.
  ### Operadores de transformación
- * **Map:** Sin duda, el operador más utilizado en RxJava es map, que tiene la siguiente firma:<R> Observable<R> map(Func1<T, R> func)La declaración 
-  del método anterior significa que la función func puede transformar el objeto T al tipo de objeto R, y la aplicación de map transforma Observable<T> en
-Observable<R>. Sin embargo, una firma no siempre describe bien el comportamiento del operador especialmente si el operador realiza una transformación compleja. Para estos propósitos, se inventaron los diagramas de mármol. Los diagramas de mármol presentan visualmente las transformaciones del flujo.Un ejemplo práctico del map con el ejemplo de la tienda seria:
+ * **Map:** El operador más utilizado en reactividad es el map, este operador permite la transformación de un flujo de datos, teniendo en cuenta que recibe un tipo de dato T y retorna un tipo de dato R donde T es cualquier tipo de dato de entrada y R es la salida de los datos ya transformados. 
+  
+  Ejemplo práctico del map con el proyecto planteado:
   
 <p align="center">
   <img src="https://user-images.githubusercontent.com/90659322/195445782-f80c52df-8de3-4a9c-b11a-99bb9dc6a283.png"/>
 </p>
   
-```
-  Mirando la imagen anterior, debería estar claro que el map hace una transformación de uno a uno uno a uno, en este caso del 
-  ejemplo práctico lo que nos transforma es  el nombre de cada uno de los productos al devolvernos su nombre en mayúsculas.
-  Un ejemplo del resultado esperado sería
-```
+  ```
+  Como se observa en la imagen anterior, esta claro que el map hace una transformación uno a uno de los elementos
+  del flujo de datos, en el caso del ejemplo práctico transforma el atributo "name" de cada uno de los productos
+  en mayúsculas.
+  ```
+  Resultado esperado:
+
   <p align="center">
     <img src="https://user-images.githubusercontent.com/90659322/195445903-4f6e1e30-4a2b-4a70-bf66-e62ff822258c.png"/>
   </p>
   
- * **Flatmap:** El operador flatMap consta, lógicamente, de dos operaciones: map y flatten (en términos de Reactor, flatten es similar al operador merge). La parte map del operador flatMap transforma cada elemento entrante en una secuencia reactiva      (T -> Flux<R>), y la parte flatten fusiona todas las secuencias reactivas generadas en una nueva secuencia reactiva, por la que pasa los elementos de tipo R. 
-Según la dinámica que venimos trabajando de la tienda con los productos un ejemplo de este sería:
+ * **Flatmap:** El operador flatMap consta, lógicamente, de dos operaciones: map y flatten. La parte map del operador flatMap transforma cada elemento entrante en una secuencia, y la parte flatten fusiona todas las secuencias reactivas generadas en un nuevo flujo de datos que es el que se retorna con todos los elementos aplanados, es decir, en una única lista.
+
+  Ejemplo práctico de este operador:
+  
+  <p align="center">
+     <img src="https://user-images.githubusercontent.com/106001562/195634165-122d7e29-b7dc-4610-bb91-bb99af5ac137.png"/>
+  </p>
+  
+  ```
+  La imagen anterior muestra como, de entrada se reciben los en una estructura o método MONO<T> y al implementar el flatmap 
+  se puede obtener cada uno los elementos que   se encuentran dentro del MONO<T> 
+  ```
+  
+  Resultado esperado:
+  
+  <p align="center">
+     <img src="https://user-images.githubusercontent.com/106001562/195635618-8a5f106d-2169-4924-b1f2-70bce5eaab0c.png"/>
+  </p>
+
 
 ### Operadores de filtrado
    * **Filter:** A diferencia del operador de mapa, el filtro puede producir menos elementos de los que ha recibido. Sólo emite los elementos que han superado con éxito la prueba del predicado
@@ -173,9 +192,12 @@ Según la dinámica que venimos trabajando de la tienda con los productos un eje
    </p>
   
   ```
-  En este ejemplo se está realizando un filtrado en el documento de productos, donde indicamos en predicado que el  filtro se
-  realizará por el nombre del producto donde la consulta contenga una secuencia de caracteres.
+  En este ejemplo se realiza un filtrado en el documento de productos, donde se indica en predicado que el  filtro se
+  realiza por el atributo "name" del producto, donde la consulta contenga una secuencia de caracteres recibida como 
+  parametro.
   ```
+  
+  Resultado esperado:
   <p align="center">
     <img src="https://user-images.githubusercontent.com/90659322/195447625-a4080f68-ca09-472c-a335-e67e4cab70f0.png"/>
   </p>
@@ -187,21 +209,20 @@ Según la dinámica que venimos trabajando de la tienda con los productos un eje
   
   ```
   En este ejemplo se aplica el método distinct para la obtener los productos sin colores duplicados este método funcional 
-  nos entrega el siguiente resultado
+  entrega el siguiente resultado
   ```
   <p align="center">
-    <img src=""/>
-    ![image](https://user-images.githubusercontent.com/90659322/195449032-8fef8e1a-96d5-4eb9-912f-33fcf7f5e874.png)
+    <img src="https://user-images.githubusercontent.com/90659322/195449032-8fef8e1a-96d5-4eb9-912f-33fcf7f5e874.png"/>
   </p>
   
    * **Take:** Toma n cantidad de elementos de un flux 
    <p align="center">
-     <img src="https://user-images.githubusercontent.com/90659322/195448203-1efef780-0cab-4c5d-bf47-db8dad719781.png"/>
+     <img src="https://user-images.githubusercontent.com/106001562/195640139-1a0cb669-211e-4e1f-8bfa-ccc827a294e4.png"/>
   </p>
   
   ```
-  Especificar mejor el texto
-
+  En este ejemplo lo realizaremos para 2 elementos,esto indica que de nuestra consulta solo obtendremos los dos primeros
+  elementos de la misma, obteniendo como resultado lo siguiente:
   ```
   <p align="center">
     <img src="https://user-images.githubusercontent.com/90659322/195450212-557c8786-417e-4d5d-9924-f61879be4092.png"/>
@@ -209,12 +230,12 @@ Según la dinámica que venimos trabajando de la tienda con los productos un eje
   
   * **Skip:**  se usa para ignorar un determinado numero de elementos de un flux 
    <p align="center">
-     <img src="https://user-images.githubusercontent.com/90659322/195448203-1efef780-0cab-4c5d-bf47-db8dad719781.png"/>
+     <img src="https://user-images.githubusercontent.com/106001562/195641546-7ed5f878-c697-48b8-8c1f-b2cc851eaaa0.png"/>
   </p>
   
   ```
-  En este caso estamos utilizando el método skip para ignorar los dos  primeros elementos de un flux y se obtiene
-  el siguiente resultado
+  En este caso se implementa el método skip para ignorar los dos  primeros elementos de un flux y se obtiene
+  el siguiente resultado:
 
   ```
   <p align="center">
