@@ -243,6 +243,80 @@ Ejemplos de lambda
   </p>
   
   
+### Operadores de combinación 
+Los operadores de comparación sirven para fusionar los elementos de n cantidad de listas, dentro de estos operadores los más comunes son: zip, zipwith, merge, mergewith
+  
+* **Zip:** El operador zip permite combinar dos listas tomando un elemento de cada lista en cada una de las iteraciones que realiza dependiendo el tamaño de estás listas y se puede realizar operaciones con cada uno de estos elementos.
+
+  **Nota:** Las listas por lo general deben ser del mismo tamaño, de no ser así, el operador sólo tendrá en cuenta los elementos hasta que una de las dos listas se     quede sin elementos.
+  
+  <p align="center">
+    <img src="https://user-images.githubusercontent.com/106001562/195643418-2f8c89b3-26cb-4e3b-ba2a-18f8030bf76f.png"/>
+  </p>
+  
+  ```
+  En el ejemplo anterior se puede observar cómo a partir de dos flujos de datos de clase producto se realiza la 
+  combinación de los elementos de forma intercalada ya que el operador usado toma uno por cada lista en cada iteración,
+  la característica de filtrado es el color del producto y la respuesta es un listado de la combinación del dichos listas
+  Obteniendo como resultado lo siguiente:
+  ```
+  <p align="center">
+    <img src="https://user-images.githubusercontent.com/106001562/195643844-3a6ce0fb-f185-4b9c-a516-18221709e09e.png"/>
+  </p>
+  
+* **ZipWith:**  Este operador permite crear una combinación de dos listas, partiendo de una de ellas, tomando como inicial la lista de referencia y siguiente la lista con la que se quiere realizar la combinación, y el flujo se realiza igual al método anterior.
+  
+  <p align="center">
+    <img src="https://user-images.githubusercontent.com/106001562/195644260-081dbe4c-5725-4920-8df0-cd258a2e5248.png"/>
+  </p>
+
+  ```
+  En el ejemplo anterior se puede observar cómo a partir un flujo del datos y mediante la implementación del operador 
+  zipwith, se puede combinar con un segundo flujo de datos obteniendo como resultado una lista como los elementos 
+  intercaladas, algo similar al ejemplo anterior, como se puede observar en la siguiente imagen:
+  ```
+  <p align="center">
+    <img src="https://user-images.githubusercontent.com/106001562/195645121-e9e5326e-846a-44dd-a2ba-cdb60048b2ef.png"/>
+  </p>
+
+ * **Merge:** El operador merge permite combinar dos listas tomando los elementos tal y como van saliendo de los flujos de datos con los que se esté realizando la combinación.
+  
+  <p align="center">
+    <img src="https://user-images.githubusercontent.com/106001562/195645439-05244363-d490-4428-af22-3c2657a182e4.png"/>
+  </p>
+
+  ```
+  En el ejemplo anterior se puede observar cómo se crea un nuevo flujo a partir de dos flujos de datos ya predefinidos
+  para el caso con el filtrado de los productos por un color en especifico, como se puede observar en la siguiente 
+  imagen:
+  ```
+  
+  <p align="center">
+    <img src="https://user-images.githubusercontent.com/106001562/195645974-09b2b66e-f7bd-47d6-98df-920a7526af3d.png"/>
+  </p>
+  
+* **MergeWith:** Este operador permite crear una combinación de dos listas, partiendo de una de ellas, tomando como inicial la lista de referencia y siguiente la lista con la que se quiere realizar la combinación, ingresando al nuevo flujo tal y como sale de cada flujo inicial
+  
+  <p align="center">
+    <img src="https://user-images.githubusercontent.com/106001562/195646429-80aee9d2-a20e-4fc5-a9ff-42764b93b1b0.png"/>
+  </p>
+  
+  ```
+  En el ejemplo anterior se puede observar cómo a partir un flujo de datos se combina con otro flujo de datos, estos 
+  datos son preestablecidos por dos filtros respecto a los colores de cada producto, como se observa enla imagen 
+  anterior, obteniendo como resultado lo siguiente:
+  ```
+  
+  <p align="center">
+    <img src="https://user-images.githubusercontent.com/106001562/195647056-afc30034-63fc-4ab4-8992-d8852b93a8d4.png"/>
+  </p>
+  
+
+
+
+  
+
+
   
 ## Autores ✒️
 * **Daniel Steven Gil Cruz** 
