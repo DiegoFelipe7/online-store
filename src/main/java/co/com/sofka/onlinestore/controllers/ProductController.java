@@ -60,7 +60,7 @@ public class ProductController {
     }
 
     @GetMapping(path = "/api/products/errorMap")
-    public Flux<Products> ErrormapMethod() {
+    public Flux<Products> ErrorMapMethod() {
         return productServices.errorMap();
     }
 
