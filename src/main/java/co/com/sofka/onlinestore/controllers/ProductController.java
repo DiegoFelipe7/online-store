@@ -49,4 +49,19 @@ public class ProductController {
         return productServices.productSequentialColor();
     }
 
+    @GetMapping(path = "/api/products/errorReturn")
+    public Flux<Products> ErrorReturnMethod() {
+        return productServices.errorReturn();
+    }
+
+    @GetMapping(path = "/api/products/errorResume")
+    public Flux<Products> ErrorResumeMethod() {
+        return productServices.errorResume();
+    }
+
+    @GetMapping(path = "/api/products/errorMap")
+    public Flux<Products> ErrormapMethod() {
+        return productServices.errorMap();
+    }
+
 }

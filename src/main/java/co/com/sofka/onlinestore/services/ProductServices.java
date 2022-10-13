@@ -52,17 +52,63 @@ public class ProductServices implements Iproducts {
 
     @Override
     public Flux<Products> productColorInterleaved() {
-        Flux<Products> listGreen =  productRepository.findAll().filter(products -> products.getColor().equalsIgnoreCase("VERDE"));
-        Flux<Products> listRed =  productRepository.findAll().filter(products -> products.getColor().equalsIgnoreCase("ROJO"));
+        Flux<Products> listGreen =  productRepository.findAll()
+                .filter(products -> products.getColor().equalsIgnoreCase("VERDE")).concatWith(Flux.error(new RuntimeException("error")));
+        Flux<Products> listRed =  productRepository.findAll()
+                .filter(products -> products.getColor().equalsIgnoreCase("ROJO"));
         return Flux.zip(listGreen,listRed,(productGreen,productRed)->Flux.just(productGreen,productRed)).flatMap(product->product);
+        //return listGreen.zipWith(listRed,(productGreen,productRed)->Flux.just(productGreen,productRed)).flatMap(product->product);
     }
 
     @Override
     public Flux<Products> productSequentialColor() {
-        Flux<Products> listGreen =  productRepository.findAll().filter(products -> products.getColor().equalsIgnoreCase("VERDE"));
-        Flux<Products> listRed =  productRepository.findAll().filter(products -> products.getColor().equalsIgnoreCase("ROJO"));
+        Flux<Products> listGreen =  productRepository.findAll()
+                .filter(products -> products.getColor().equalsIgnoreCase("VERDE"));
+        Flux<Products> listRed =  productRepository.findAll()
+                .filter(products -> products.getColor().equalsIgnoreCase("ROJO"));
         return listGreen.mergeWith(listRed);
     }
 
 
+    public Flux<Products> errorReturn() {
+        Flux<Products> listGreen =  productRepository.findAll()
+                .filter(products -> products.getColor().equalsIgnoreCase("VERDE"))
+                .concatWith(Flux.error(new RuntimeException("Este es el error return")));
+        Flux<Products> listRed =  productRepository.findAll()
+                .filter(products -> products.getColor().equalsIgnoreCase("ROJO"));
+        return Flux.merge(listGreen,listRed)
+                .onErrorReturn(new Products("error", "Este es el error return","error","error",0,0.0,0.0));
+    }
+
+//    public Flux<Products> errorReturn() {
+//        Flux<Products> listGreen =  productRepository.findAll()
+//                .filter(products -> products.getColor().equalsIgnoreCase("VERDE")).concatWith(Flux.error(new RuntimeException("error")));
+//        Flux<Products> listRed =  productRepository.findAll()
+//                .filter(products -> products.getColor().equalsIgnoreCase("ROJO"));
+//        return Flux.zip(listGreen,listRed,(productGreen,productRed)->Flux.just(productGreen,productRed))
+//                .flatMap(product->product)
+//                .onErrorReturn(new Products("","error","error","error",0,0.0,0.0));
+//    }
+    public Flux<Products> errorResume() {
+        Flux<Products> listGreen =  productRepository.findAll()
+                .filter(products -> products.getColor().equalsIgnoreCase("VERDE"))
+                .concatWith(Flux.error(new RuntimeException("Este es el error resume ")));
+        Flux<Products> listRed =  productRepository.findAll()
+                .filter(products -> products.getColor().equalsIgnoreCase("ROJO"));
+        return Flux.merge(listGreen,listRed)
+                .onErrorResume(e-> Mono.just(new Products("",e.getMessage(),"error","error",0,0.0,0.0)));
+//        return  Flux.zip(listGreen,listRed,(productGreen,productRed)->Flux.just(productGreen,productRed))
+//                .flatMap(product->product)
+//                .onErrorResume(e-> Mono.just(new Products("",e.getMessage(),"error","error",0,0.0,0.0)));
+
+    }
+
+    public Flux<Products> errorMap() {
+        Flux<Products> listGreen =  productRepository.findAll()
+                .filter(products -> products.getColor().equalsIgnoreCase("VERDE"))
+                .concatWith(Flux.error(new RuntimeException("Este es el error map")));
+        Flux<Products> listRed =  productRepository.findAll()
+                .filter(products -> products.getColor().equalsIgnoreCase("ROJO"));
+        return Flux.merge(listGreen,listRed).onErrorMap(e-> new InterruptedException(e.getMessage()));
+    }
 }
