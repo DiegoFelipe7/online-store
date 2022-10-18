@@ -7,6 +7,8 @@ import reactor.core.publisher.Mono;
 public interface Iproducts {
 
     Flux<Products> listProducts();
+
+    Mono<Products> getProductId(String id);
     Mono<Products> saveProducts(Mono<Products> productsMono);
 
     Flux<Products> listProductName(String name);
@@ -22,4 +24,6 @@ public interface Iproducts {
     Flux<Products> listOfProducts(Long n);
 
     Flux<Products>  skipProducts(Long n);
+
+    Mono<Void> deleteProduct(String id);
 }

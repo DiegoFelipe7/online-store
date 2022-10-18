@@ -26,8 +26,18 @@ public class ProductServices implements Iproducts {
     }
 
     @Override
+    public Mono<Products> getProductId(String id) {
+        return productRepository.findAll()
+                .filter(ele->ele.getId().equalsIgnoreCase(id))
+                .next();
+    }
+
+    @Override
     public Mono<Products> saveProducts(Mono<Products> productsMono) {
-        return productsMono.flatMap(e -> productRepository.save(e));
+        return productsMono.flatMap(e ->{
+            e.setTotal(e.getPrice()*e.getQuantity());
+          return productRepository.save(e);
+        });
     }
 
     @Override
@@ -51,10 +61,12 @@ public class ProductServices implements Iproducts {
     @Override
     public Flux<Products> productColorInterleaved() {
         Flux<Products> listGreen =  productRepository.findAll()
-                .filter(products -> products.getColor().equalsIgnoreCase("VERDE")).concatWith(Flux.error(new RuntimeException("error")));
+                .filter(products -> products.getColor().equalsIgnoreCase("VERDE"));
+                //.concatWith(Flux.error(new RuntimeException("error")));
         Flux<Products> listRed =  productRepository.findAll()
                 .filter(products -> products.getColor().equalsIgnoreCase("ROJO"));
-        return Flux.zip(listGreen,listRed,(productGreen,productRed)->Flux.just(productGreen,productRed)).flatMap(product->product);
+        return Flux.zip(listGreen,listRed,(productGreen,productRed)->Flux.just(productGreen,productRed))
+                .flatMap(product->product);
         //return listGreen.zipWith(listRed,(productGreen,productRed)->Flux.just(productGreen,productRed)).flatMap(product->product);
     }
 
@@ -82,8 +94,6 @@ public class ProductServices implements Iproducts {
     public Flux<Products> skipProducts(Long n) {
         return productRepository.findAll().skip(n);
     }
-
-
     public Flux<Products> errorReturn() {
         Flux<Products> listGreen =  productRepository.findAll()
                 .filter(products -> products.getColor().equalsIgnoreCase("VERDE"))
@@ -125,4 +135,11 @@ public class ProductServices implements Iproducts {
                 .filter(products -> products.getColor().equalsIgnoreCase("ROJO"));
         return Flux.merge(listGreen,listRed).onErrorMap(e-> new InterruptedException(e.getMessage()));
     }
+
+    @Override
+    public Mono<Void> deleteProduct(String id) {
+        return productRepository.findById(id).then();
+    }
+
+
 }
