@@ -67,7 +67,7 @@ public class ProductServices implements Iproducts {
                 .filter(products -> products.getColor().equalsIgnoreCase("ROJO"));
         return Flux.zip(listGreen,listRed,(productGreen,productRed)->Flux.just(productGreen,productRed))
                 .flatMap(product->product);
-        //return listGreen.zipWith(listRed,(productGreen,productRed)->Flux.just(productGreen,productRed)).flatMap(product->product);
+
     }
 
     @Override
@@ -104,15 +104,6 @@ public class ProductServices implements Iproducts {
                 .onErrorReturn(new Products("error", "Este es el error return","error","error",0,0.0,0.0));
     }
 
-//    public Flux<Products> errorReturn() {
-//        Flux<Products> listGreen =  productRepository.findAll()
-//                .filter(products -> products.getColor().equalsIgnoreCase("VERDE")).concatWith(Flux.error(new RuntimeException("error")));
-//        Flux<Products> listRed =  productRepository.findAll()
-//                .filter(products -> products.getColor().equalsIgnoreCase("ROJO"));
-//        return Flux.zip(listGreen,listRed,(productGreen,productRed)->Flux.just(productGreen,productRed))
-//                .flatMap(product->product)
-//                .onErrorReturn(new Products("","error","error","error",0,0.0,0.0));
-//    }
     public Flux<Products> errorResume() {
         Flux<Products> listGreen =  productRepository.findAll()
                 .filter(products -> products.getColor().equalsIgnoreCase("VERDE"))
@@ -121,10 +112,6 @@ public class ProductServices implements Iproducts {
                 .filter(products -> products.getColor().equalsIgnoreCase("ROJO"));
         return Flux.merge(listGreen,listRed)
                 .onErrorResume(e-> Mono.just(new Products("",e.getMessage(),"error","error",0,0.0,0.0)));
-//        return  Flux.zip(listGreen,listRed,(productGreen,productRed)->Flux.just(productGreen,productRed))
-//                .flatMap(product->product)
-//                .onErrorResume(e-> Mono.just(new Products("",e.getMessage(),"error","error",0,0.0,0.0)));
-
     }
 
     public Flux<Products> errorMap() {

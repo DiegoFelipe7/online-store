@@ -29,8 +29,8 @@
    
   
   
-  ### Diferencia entre el paradigma reactivo
-  Se dice que dentro de la programación **reactiva** lo que se plantea es observar los cambios que se realizan en un **flujo de datos**, esto
+  ### Diferencia entre paradigma imperativo y reactivo
+  Se dice que dentro de la programación **reactiva** lo que se plantea, es observar los cambios que se realizan en un **flujo de datos**, esto
   mediante una suscripción desde la vista, es decir, consiste en reaccionar a los cambios que ocurren dentro de los flujos de datos.
   
   De acuerdo a lo anterior se tiene entonces, que mientras el paradigma imperativo trabaja con **colecciones o listas**, el paradigma
