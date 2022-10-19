@@ -197,6 +197,20 @@ Hay una característica importante relacionada con las expresiones lambda llamad
   <p align="center">
      <img src="https://user-images.githubusercontent.com/106001562/195635618-8a5f106d-2169-4924-b1f2-70bce5eaab0c.png"/>
   </p>
+  
+ * **Reduce:** El opererador reduce permimete la conversión de una lista de elementos de tipo **X** a un resultado de tipo **Y**
+ <p align="center">
+   <img src="https://user-images.githubusercontent.com/90659322/196718853-d52ec4f2-187b-4b04-98de-221c072e5679.png"/>
+  </p>
+  
+  ```
+  En este ejemplo se puede observar como de entrada, el método reduce recibe una lista de precios de los productos y como resultado
+  entrega la sumatoria total de la lista de precios. 
+  ```
+  Resultado esperado:
+  <p align="center">
+   <img src="https://user-images.githubusercontent.com/90659322/196723136-65cd68c4-67a2-42a9-ba84-465b5ca697aa.png"/>
+  </p>
 
 
 ### Operadores de filtrado
